@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-06-16T16:00:00Z",
+  "commit": "a1b2c3d4",
+  "diagnostic_logd": [
+    "diagnostic/build-a1b2c3d4-part001.logd",
+    "diagnostic/build-a1b2c3d4-part002.logd"
+  ],
+  "diagnostic_logd_error": null,
+  "chunked": true,
+  "chunk_size_bytes": 41943040,
+  "password": "example-password",
+  "decrypt_command": "cat diagnostic/build-a1b2c3d4-part001.logd diagnostic/build-a1b2c3d4-part002.logd > diagnostic/build-a1b2c3d4.logd && encryptly unpack diagnostic/build-a1b2c3d4.logd <outdir> --password example-password",
+  "total_modules": 2,
+  "passed": 2,
+  "failed": 0,
+  "modules": [
+    {
+      "name": "backend",
+      "status": "PASS",
+      "elapsed_seconds": 12.418,
+      "artifact": "backend/target/debug/backend",
+      "output": "Finished dev profile"
+    },
+    {
+      "name": "frontend",
+      "status": "PASS",
+      "elapsed_seconds": 8.321,
+      "artifact": "frontend/dist",
+      "output": "built in 8.3s"
+    }
+  ],
+  "pr_note": "Include the encrypted diagnostic logd artifact chunks and metadata file in the PR notes."
+}

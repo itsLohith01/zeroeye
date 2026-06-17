@@ -1,0 +1,23 @@
+{
+  "generated_at": "not-a-date",
+  "commit": "not-a-commit",
+  "diagnostic_logd": "build.log",
+  "diagnostic_logd_error": null,
+  "chunked": "no",
+  "chunk_size_bytes": 0,
+  "password": "",
+  "decrypt_command": null,
+  "total_modules": -1,
+  "passed": 0,
+  "failed": 0,
+  "modules": [
+    {
+      "name": "",
+      "status": "UNKNOWN",
+      "elapsed_seconds": -3,
+      "artifact": null,
+      "output": "invalid example"
+    }
+  ],
+  "pr_note": ""
+}
