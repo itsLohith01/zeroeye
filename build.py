@@ -397,9 +397,10 @@ def build_module(
     return success, elapsed, output
 
 def clean_module(module: Module, verbose: bool = False) -> bool:
-    print(f"  {color('▸', Colors.YELLOW)} Cleaning {module.name}...")
+    print(f" {color('▶', Colors.YELLOW)} Cleaning {module.name}...")
     try:
-        subprocess.run(
+        # 1. Capture the completed process object by assigning it to a variable
+        result = subprocess.run(
             module.clean_cmd,
             cwd=str(module.dir),
             capture_output=not verbose,
@@ -407,9 +408,24 @@ def clean_module(module: Module, verbose: bool = False) -> bool:
             timeout=60,
             env=os.environ.copy(),
         )
+        
+        # 2. Check if the exit code is non-zero (indicating a failure)
+        if result.returncode != 0:
+            print(f" {color('x', Colors.RED)} Clean failed for module '{module.name}' with exit code {result.returncode}")
+            
+            # Print stdout/stderr diagnostic details if they were captured (when not verbose)
+            if not verbose:
+                if result.stdout:
+                    print(f"Stdout:\n{result.stdout.strip()}")
+                if result.stderr:
+                    print(f"Stderr:\n{result.stderr.strip()}")
+            return False
+            
+        # 3. Return True only if the return code was 0 (success)
         return True
+        
     except Exception as e:
-        print(f"    {color('✗', Colors.RED)} Clean failed: {e}")
+        print(f" {color('x', Colors.RED)} Clean failed: {e}")
         return False
 
 def verify_binary(module: Module) -> Optional[str]:
